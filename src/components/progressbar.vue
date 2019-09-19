@@ -5,9 +5,9 @@
         class="value-text"
         :value="shortTemp"
         color="#12A697"
-        :size="250"
+        :size="200"
         :rotate="-90"
-        :width="30"
+        :width="20"
       >{{ shortTemp }}</v-progress-circular>
     </div>
   </div>
@@ -16,10 +16,10 @@
 
 <style scoped>
 .v-progress-circular {
-  top: 50px;
+  top: 40px;
 }
 .value-text {
-  font-size: 5rem;
+  font-size: 4rem;
 }
 </style>
 

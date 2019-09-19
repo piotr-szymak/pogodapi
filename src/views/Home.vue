@@ -2,9 +2,7 @@
   <div class="wrapper">
     <div id="app">
       <div id="nav">
-        <v-app 
-         
-        id="pogoda">
+        <v-app id="pogoda">
           <!-- <v-img :aspect-ratio="16/9" src="@/assets/lato.jpg"> -->
 
           <div>
@@ -33,16 +31,14 @@
 
           <progressbar></progressbar>
 
-          <v-layout column wrap class="my-12" align-center>
-            <v-flex xs12 sm4 class="my-4">
-              <div class="text-center">
-                <h2 class="headline white--text">Sunbath time!</h2>
-              </div>
-            </v-flex>
-            <v-flex xs12 sm4>
-              <TwojaTemperatura></TwojaTemperatura>
-            </v-flex>
-          </v-layout>
+          <v-container fluid>
+            <v-layout row>
+              <v-flex md12>
+                <TwojaTemperatura></TwojaTemperatura>
+              </v-flex>
+            </v-layout>
+          </v-container>
+          
           <!-- </v-img> -->
         </v-app>
       </div>
@@ -52,14 +48,16 @@
 </template>
 
 <style scoped>
- 
+.wrapper {
+  background: #12A697;
+}
 #pogoda {
   background-image: url("../assets/lato.jpg");
   height: 100vh;
-   background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 a {
   text-decoration: none;
