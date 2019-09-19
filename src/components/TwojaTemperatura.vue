@@ -84,8 +84,10 @@ export default {
     dataset: [],
     labels: {
       xLabels: [],
-      yLabels: 5,
+      yLabels: 10,
       yLabelsTextFormatter: val => Math.round(val * 10) / 10
+      ,
+      XLabelsTextFormatter: val => val.substring(0, 2)
     },
     grid: {
       verticalLines: true,
@@ -102,9 +104,23 @@ export default {
       .then(res => {
         console.log(res.data.temp);
         const data = res.data.temp;
+        var prevlab=0;
         for (let key in data) {
+          //console.log(data);
           this.dataset.push(data[key]);
-          this.labels.xLabels.push(moment(key).format("HH-mm-ss"));
+          //this.labels.xLabels.push(moment(data[key]).format("HH"));
+          var lab=key.substring(0, 2);
+          
+          console.log(lab);
+          if (lab!=prevlab)
+          { 
+            this.labels.xLabels.push(key.substring(0, 2));
+          }
+          else
+          {
+            this.labels.xLabels.push('');
+          }
+          prevlab=lab;
         }
       });
   }
