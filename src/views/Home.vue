@@ -6,7 +6,9 @@
           <!-- <v-img :aspect-ratio="16/9" src="@/assets/lato.jpg"> -->
 
           <div>
-            <v-app-bar color="#12A697" dark>
+            <v-app-bar dark 
+            
+            :color="'#'+colorBar">
               <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
               <v-toolbar-title>Temperatura</v-toolbar-title>
@@ -29,17 +31,20 @@
             </v-app-bar>
           </div>
 
-          <progressbar></progressbar>
+          <div class="bg" v-bind:class="bgTemp">
+            <v-container fluid fill-height>
+              <v-layout wrap justify-center>
+                <v-flex xs12>
+                  <progressbar v-bind:class="progressbar" />
+                </v-flex>
+                <v-flex fluid align-self-end sm10>
+                  <TwojaTemperatura />
+                </v-flex>
+              </v-layout>
+            </v-container>
 
-          <v-container fluid>
-            <v-layout row>
-              <v-flex md12>
-                <TwojaTemperatura></TwojaTemperatura>
-              </v-flex>
-            </v-layout>
-          </v-container>
-          
-          <!-- </v-img> -->
+            <!-- </v-img> -->
+          </div>
         </v-app>
       </div>
       <router-view />
@@ -47,17 +52,62 @@
   </div>
 </template>
 
+<style>
+.pro-bar-wiosna .v-progress-circular .v-app-bar {
+  color: #d97ea8;
+}
+.pro-bar-lato .v-progress-circular .v-app-bar {
+  color: #12a697;
+}
+.pro-bar-jesien .v-progress-circular .v-app-bar {
+  color: #733702;
+}
+.pro-bar-zima .v-progress-circular .v-app-bar {
+  color: #c1d4d9;
+}
+.pro-bar-mroz .v-progress-circular .v-app-bar {
+  color: #a3bfd9;
+}
+.pro-bar-upal .v-progress-circular .v-app-bar {
+  color: #593325;
+}
+</style>
+
 <style scoped>
 .wrapper {
-  background: #12A697;
+  background: #12a697;
 }
 #pogoda {
-  background-image: url("../assets/lato.jpg");
   height: 100vh;
+}
+.bg {
+  /* background-image: url("../assets/lato.jpg");  */
+  /* */
+  height: 100vh;
+  width: 100%;
   background-position: center;
+  background-position-y: 40%;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+}
+.bglato {
+  background-image: url("../assets/lato.jpg");
+}
+.bgwiosna {
+  background-image: url("../assets/wiosna.jpg");
+}
+.bgjesien {
+  background-image: url("../assets/jesien.jpg");
+}
+.bgzima {
+  background-image: url("../assets/zima2.jpg");
+}
+.bgupal {
+  background-image: url("../assets/goraco.jpg");
+}
+.bgmroz {
+  background-image: url("../assets/zima.jpg");
 }
 a {
   text-decoration: none;
@@ -78,6 +128,80 @@ export default {
   components: {
     TwojaTemperatura,
     progressbar
+  },
+
+  data: () => ({
+    temperatura: "",
+    colorBar: {
+      
+    },
+  }),
+  created() {
+    this.allRecords();
+  },
+  // bgImage() {
+  //   this.background();
+  // },
+  computed: {
+    // a computed getter
+    shortTemp: function() {
+      return this.temperatura.substring(0, 2) + "°C";
+    },
+    bgTemp: function() {
+      return {
+        bgwiosna:
+          this.temperatura.substring(0, 2) > 15 &&
+          this.temperatura.substring(0, 2) < 25,
+        bglato:
+          this.temperatura.substring(0, 2) > 25 &&
+          this.temperatura.substring(0, 2) < 45,
+        bgjesien:
+          this.temperatura.substring(0, 2) > 0 &&
+          this.temperatura.substring(0, 2) < 15,
+        bgzima:
+          this.temperatura.substring(0, 2) > -20 &&
+          this.temperatura.substring(0, 2) < 0,
+        bgupal: this.temperatura.substring(0, 2) > 45,
+        bgmroz: this.temperatura.substring(0, 2) < -20
+      };
+    },
+
+    progressbar: function() {
+      return {
+        "pro-bar-wiosna": this.bgTemp.bgwiosna,
+        "pro-bar-lato": this.bgTemp.bglato,
+        "pro-bar-jesien": this.bgTemp.bgjesien,
+        "pro-bar-zima": this.bgTemp.bgzima,
+        "pro-bar-upal": this.bgTemp.bgupal,
+        "pro-bar-mroz": this.bgTemp.bgmroz
+      };
+    },
+    colorData: function() {
+      return {
+        "d97ea8":this.bgTemp.bgwiosna,
+        "12a697":this.bgTemp.bglato,
+        "733702":this.bgTemp.bgjesien,
+        "c1d4d9":this.bgTemp.bgzima,
+        "a3bfd9":this.bgTemp.bgupal,
+        "593325":this.bgTemp.bgmroz 
+      };
+    }
+  },
+
+  methods: {
+    allRecords: function() {
+      axios
+        .get("http://192.168.1.31/aktualna-temperatura")
+        .then(response => {
+          this.temperatura = response.data;
+          console.log(this.temperatura);
+          console.log(this.bgTemp);
+          console.log(this.progressbar);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
   }
 };
 </script>

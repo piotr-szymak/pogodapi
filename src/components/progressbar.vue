@@ -4,7 +4,6 @@
       <v-progress-circular
         class="value-text"
         :value="shortTemp"
-        color="#12A697"
         :size="200"
         :rotate="-90"
         :width="20"
@@ -16,8 +15,10 @@
 
 <style scoped>
 .v-progress-circular {
-  top: 40px;
+  top: 40px; 
+  color: #12A697;
 }
+
 .value-text {
   font-size: 4rem;
 }
@@ -46,7 +47,7 @@ export default {
         .get("http://192.168.1.31/aktualna-temperatura")
         .then(response => {
           this.temperatura = response.data;
-          console.log(response.data);
+          
         })
         .catch(function(error) {
           console.log(error);

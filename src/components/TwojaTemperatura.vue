@@ -24,9 +24,8 @@
 
 
 <style lang="scss">
-#room_temp {
-  margin-top: 4rem;
-}
+
+
 .temp-chart {
   .vtc {
     height: 250px;
@@ -106,7 +105,7 @@ export default {
         this.dataset.push(data[key]);
         //this.labels.xLabels.push(moment(data[key]).format("HH"));
         var lab = key;
-        console.log(lab);
+        
         if (lab != prevlab) {
           this.labels.xLabels.push(key.substring(0, 2));
         } else {
