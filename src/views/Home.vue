@@ -6,9 +6,7 @@
           <!-- <v-img :aspect-ratio="16/9" src="@/assets/lato.jpg"> -->
 
           <div>
-            <v-app-bar dark 
-            
-            :color="'#'+colorBar">
+            <v-app-bar dark :color="'#'+colorData">
               <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
               <v-toolbar-title>Temperatura</v-toolbar-title>
@@ -53,22 +51,22 @@
 </template>
 
 <style>
-.pro-bar-wiosna .v-progress-circular .v-app-bar {
+.pro-bar-wiosna .v-progress-circular {
   color: #d97ea8;
 }
-.pro-bar-lato .v-progress-circular .v-app-bar {
+.pro-bar-lato .v-progress-circular {
   color: #12a697;
 }
-.pro-bar-jesien .v-progress-circular .v-app-bar {
+.pro-bar-jesien .v-progress-circular {
   color: #733702;
 }
-.pro-bar-zima .v-progress-circular .v-app-bar {
+.pro-bar-zima .v-progress-circular {
   color: #c1d4d9;
 }
-.pro-bar-mroz .v-progress-circular .v-app-bar {
+.pro-bar-mroz .v-progress-circular {
   color: #a3bfd9;
 }
-.pro-bar-upal .v-progress-circular .v-app-bar {
+.pro-bar-upal .v-progress-circular {
   color: #593325;
 }
 </style>
@@ -132,9 +130,7 @@ export default {
 
   data: () => ({
     temperatura: "",
-    colorBar: {
-      
-    },
+   
   }),
   created() {
     this.allRecords();
@@ -177,6 +173,33 @@ export default {
       };
     },
     colorData: function() {
+      // return "d97ea8" ? this.bgTemp.bgwiosna == true : !true;
+      // return "12a697" ? this.bgTemp.bglato == true : !true;
+      // return "733702" ? this.bgTemp.bgjesien == true : !true;
+      // return "c1d4d9" ? this.bgTemp.bgzima == true : !true;
+      // return "593325" ? this.bgTemp.bgupal == true : !true;
+      // return "a3bfd9" ? this.bgTemp.bgmroz == true : !true;
+       
+
+      // if (this.bgTemp.bgwiosna == true){
+      //   return "d97ea8";
+      // }
+      // else if (this.bgTemp.bglato == true){
+      //   return "12a697";
+      // }
+      //  else if (this.bgTemp.bgjesien == true){
+      //   return "733702";
+      // }
+      //  else if (this.bgTemp.bgzima == true){
+      //   return "c1d4d9";
+      // }
+      // else  if (this.bgTemp.bgupal == true){
+      //   return "593325";
+      // }
+      //  else if (this.bgTemp.bgmroz == true){
+      //   return "a3bfd9";
+      // }
+
       return {
         "d97ea8":this.bgTemp.bgwiosna,
         "12a697":this.bgTemp.bglato,
@@ -185,7 +208,15 @@ export default {
         "a3bfd9":this.bgTemp.bgupal,
         "593325":this.bgTemp.bgmroz 
       };
-    }
+    },
+    // colorProp: function(this.colorData, true) {
+    //   return Object.keys(colorData).find(key => colorData[key] === true)
+    // }
+    
+    // getKeyByValue: function(object, value) {
+    // return Object.keys(object).find(key => object[key] === value);
+    // }
+
   },
 
   methods: {
@@ -197,6 +228,8 @@ export default {
           console.log(this.temperatura);
           console.log(this.bgTemp);
           console.log(this.progressbar);
+          console.log(this.colorData);
+          console.log(getKeyByValue(this.colorData, true));
         })
         .catch(function(error) {
           console.log(error);
