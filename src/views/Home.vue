@@ -6,7 +6,7 @@
           <!-- <v-img :aspect-ratio="16/9" src="@/assets/lato.jpg"> -->
 
           <div>
-            <v-app-bar dark :color="'#'+colorData">
+            <v-app-bar dark :color="'#'+colorProp">
               <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
               <v-toolbar-title>Temperatura</v-toolbar-title>
@@ -129,8 +129,7 @@ export default {
   },
 
   data: () => ({
-    temperatura: "",
-   
+    temperatura: ""
   }),
   created() {
     this.allRecords();
@@ -179,7 +178,6 @@ export default {
       // return "c1d4d9" ? this.bgTemp.bgzima == true : !true;
       // return "593325" ? this.bgTemp.bgupal == true : !true;
       // return "a3bfd9" ? this.bgTemp.bgmroz == true : !true;
-       
 
       // if (this.bgTemp.bgwiosna == true){
       //   return "d97ea8";
@@ -201,22 +199,23 @@ export default {
       // }
 
       return {
-        "d97ea8":this.bgTemp.bgwiosna,
-        "12a697":this.bgTemp.bglato,
-        "733702":this.bgTemp.bgjesien,
-        "c1d4d9":this.bgTemp.bgzima,
-        "a3bfd9":this.bgTemp.bgupal,
-        "593325":this.bgTemp.bgmroz 
+        d97ea8: this.bgTemp.bgwiosna,
+        "12a697": this.bgTemp.bglato,
+        "733702": this.bgTemp.bgjesien,
+        c1d4d9: this.bgTemp.bgzima,
+        a3bfd9: this.bgTemp.bgupal,
+        "593325": this.bgTemp.bgmroz
       };
     },
-    // colorProp: function(this.colorData, true) {
-    //   return Object.keys(colorData).find(key => colorData[key] === true)
-    // }
-    
+    colorProp: function() {
+      return Object.keys(this.colorData).find(
+        key => this.colorData[key] === true
+      );
+    }
+
     // getKeyByValue: function(object, value) {
     // return Object.keys(object).find(key => object[key] === value);
     // }
-
   },
 
   methods: {
@@ -229,7 +228,8 @@ export default {
           console.log(this.bgTemp);
           console.log(this.progressbar);
           console.log(this.colorData);
-          console.log(getKeyByValue(this.colorData, true));
+
+          console.log(this.colorProp);
         })
         .catch(function(error) {
           console.log(error);
