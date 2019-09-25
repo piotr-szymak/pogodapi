@@ -36,7 +36,7 @@
                   <progressbar v-bind:class="progressbar" />
                 </v-flex>
                 <v-flex fluid align-self-end sm10>
-                  <TwojaTemperatura />
+                  <TwojaTemperatura v-bind:class="colorChart" />
                 </v-flex>
               </v-layout>
             </v-container>
@@ -51,23 +51,95 @@
 </template>
 
 <style>
+:root {
+  --colorWiosna: #d97ea8;
+  --colorLato: #12a697;
+  --colorJesien: #733702;
+  --colorZima: #c1d4d9;
+  --colorMroz: #a3bfd9;
+  --colorUpal: #593325;
+}
+
 .pro-bar-wiosna .v-progress-circular {
-  color: #d97ea8;
+  color: var(--colorWiosna);
 }
 .pro-bar-lato .v-progress-circular {
-  color: #12a697;
+  color: var(--colorLato);
 }
 .pro-bar-jesien .v-progress-circular {
-  color: #733702;
+  color: var(--colorMroz);
 }
 .pro-bar-zima .v-progress-circular {
-  color: #c1d4d9;
+  color: var(--colorZima);
 }
 .pro-bar-mroz .v-progress-circular {
-  color: #a3bfd9;
+  color: var(--colorMroz);
 }
 .pro-bar-upal .v-progress-circular {
-  color: #593325;
+  color: var(--colorUpal);
+}
+
+.chartWiosna .temp-chart .grid line,
+.temp-chart .labels line {
+  stroke: var(--colorWiosna);
+}
+.chartLato .temp-chart .grid line,
+.temp-chart .labels line {
+  stroke: var(--colorLato);
+}
+.chartJesien .temp-chart .grid line,
+.temp-chart .labels line {
+  stroke: var(--colorJesien);
+}
+.chartZima .temp-chart .grid line,
+.temp-chart .labels line {
+  stroke: var(--colorZima);
+}
+.chartMroz .temp-chart .grid line,
+.temp-chart .labels line {
+  stroke: var(--colorMroz);
+}
+.chartUpal .temp-chart .grid line,
+.temp-chart .labels line {
+  stroke: var(--colorUpal);
+}
+
+.chartWiosna .curve-temp .stroke {
+  stroke: var(--colorWiosna);
+}
+.chartLato .curve-temp .stroke {
+  stroke: var(--colorLato);
+}
+.chartJesien .curve-temp .stroke {
+  stroke: var(--colorJesien);
+}
+.chartZima .curve-temp .stroke {
+  stroke: var(--colorZima);
+}
+.chartMroz .curve-temp .stroke {
+  stroke: var(--colorMroz);
+}
+.chartUpal .curve-temp .stroke {
+  stroke: var(--colorUpal);
+}
+
+.chartWiosna .colorGradPory {
+  stop-color: var(--colorWiosna);
+}
+.chartLato .colorGradPory {
+  stop-color: var(--colorLato);
+}
+.chartJesien .colorGradPory {
+  stop-color: var(--colorJesien);
+}
+.chartZima .colorGradPory {
+  stop-color: var(--colorZima);
+}
+.chartMroz .colorGradPory {
+  stop-color: var(--colorMroz);
+}
+.chartUpal .colorGradPory {
+  stop-color: var(--colorUpal);
 }
 </style>
 
@@ -79,8 +151,7 @@
   height: 100vh;
 }
 .bg {
-  /* background-image: url("../assets/lato.jpg");  */
-  /* */
+  
   height: 100vh;
   width: 100%;
   background-position: center;
@@ -171,40 +242,26 @@ export default {
         "pro-bar-mroz": this.bgTemp.bgmroz
       };
     },
+
+    colorChart: function() {
+      return {
+        chartWiosna: this.bgTemp.bgwiosna,
+        chartLato: this.bgTemp.bglato,
+        chartJesien: this.bgTemp.bgjesien,
+        chartZima: this.bgTemp.bgzima,
+        chartUpal: this.bgTemp.bgupal,
+        chartMroz: this.bgTemp.bgmroz
+      };
+    },
     colorData: function() {
-      // return "d97ea8" ? this.bgTemp.bgwiosna == true : !true;
-      // return "12a697" ? this.bgTemp.bglato == true : !true;
-      // return "733702" ? this.bgTemp.bgjesien == true : !true;
-      // return "c1d4d9" ? this.bgTemp.bgzima == true : !true;
-      // return "593325" ? this.bgTemp.bgupal == true : !true;
-      // return "a3bfd9" ? this.bgTemp.bgmroz == true : !true;
-
-      // if (this.bgTemp.bgwiosna == true){
-      //   return "d97ea8";
-      // }
-      // else if (this.bgTemp.bglato == true){
-      //   return "12a697";
-      // }
-      //  else if (this.bgTemp.bgjesien == true){
-      //   return "733702";
-      // }
-      //  else if (this.bgTemp.bgzima == true){
-      //   return "c1d4d9";
-      // }
-      // else  if (this.bgTemp.bgupal == true){
-      //   return "593325";
-      // }
-      //  else if (this.bgTemp.bgmroz == true){
-      //   return "a3bfd9";
-      // }
-
+     
       return {
         d97ea8: this.bgTemp.bgwiosna,
         "12a697": this.bgTemp.bglato,
         "733702": this.bgTemp.bgjesien,
         c1d4d9: this.bgTemp.bgzima,
-        a3bfd9: this.bgTemp.bgupal,
-        "593325": this.bgTemp.bgmroz
+        "593325": this.bgTemp.bgupal,
+        a3bfd9: this.bgTemp.bgmroz
       };
     },
     colorProp: function() {
@@ -213,9 +270,7 @@ export default {
       );
     }
 
-    // getKeyByValue: function(object, value) {
-    // return Object.keys(object).find(key => object[key] === value);
-    // }
+    
   },
 
   methods: {

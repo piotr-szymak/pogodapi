@@ -8,9 +8,11 @@ import TrendChart from "vue-trend-chart";
 Vue.config.productionTip = false;
 Vue.use(TrendChart);
 
+
+
+
 new Vue({
   vuetify,
   router,
   render: h => h(App)
-}).$mount('#app')
-
+}).$mount('#app');
