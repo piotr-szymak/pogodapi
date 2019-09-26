@@ -15,8 +15,8 @@
 
 <style scoped>
 .v-progress-circular {
-  top: 40px; 
-  color: #12A697;
+  top: 40px;
+  color: #12a697;
 }
 
 .value-text {
@@ -44,10 +44,9 @@ export default {
   methods: {
     allRecords: function() {
       axios
-        .get("http://192.168.1.31/aktualna-temperatura")
+        .get("/aktualna-temperatura")
         .then(response => {
           this.temperatura = response.data;
-          
         })
         .catch(function(error) {
           console.log(error);

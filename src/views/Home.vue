@@ -35,7 +35,8 @@
                 <v-flex xs12>
                   <progressbar v-bind:class="progressbar" />
                 </v-flex>
-                <v-flex fluid align-self-end sm10>
+                <div class="chartBackground"></div>
+                <v-flex fluid align-self-end sm10 class="chartTemp">
                   <TwojaTemperatura v-bind:class="colorChart" />
                 </v-flex>
               </v-layout>
@@ -60,6 +61,28 @@
   --colorUpal: #593325;
 }
 
+.chartBackground {
+  background: rgba(255, 255, 255, 0.397);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: block;
+  /* background-image: url('http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_527bf56961712_1.JPG'); */
+  width: 120%;
+  height: 45%;
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(20px);
+  overflow: hidden;
+}
+.chartTemp {
+  z-index: 9999;
+}
+
 .pro-bar-wiosna .v-progress-circular {
   color: var(--colorWiosna);
 }
@@ -67,7 +90,7 @@
   color: var(--colorLato);
 }
 .pro-bar-jesien .v-progress-circular {
-  color: var(--colorMroz);
+  color: var(--colorJesien);
 }
 .pro-bar-zima .v-progress-circular {
   color: var(--colorZima);
@@ -151,7 +174,6 @@
   height: 100vh;
 }
 .bg {
-  
   height: 100vh;
   width: 100%;
   background-position: center;
@@ -254,7 +276,6 @@ export default {
       };
     },
     colorData: function() {
-     
       return {
         d97ea8: this.bgTemp.bgwiosna,
         "12a697": this.bgTemp.bglato,
@@ -269,14 +290,12 @@ export default {
         key => this.colorData[key] === true
       );
     }
-
-    
   },
 
   methods: {
     allRecords: function() {
       axios
-        .get("http://192.168.1.31/aktualna-temperatura")
+        .get("/aktualna-temperatura")
         .then(response => {
           this.temperatura = response.data;
           console.log(this.temperatura);
