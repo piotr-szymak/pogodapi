@@ -44,7 +44,7 @@ export default {
   methods: {
     allRecords: function() {
       axios
-        .get("/aktualna-temperatura")
+        .get("http://192.168.1.31/aktualna-temperatura")
         .then(response => {
           this.temperatura = response.data;
         })

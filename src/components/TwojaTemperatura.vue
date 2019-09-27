@@ -113,7 +113,7 @@ export default {
     }
   }),
   mounted() {
-    axios.get("/temperatura-10").then(res => {
+    axios.get("http://192.168.1.31/temperatura-10").then(res => {
       const data = res.data.temp;
       var prevlab = 0;
       for (let key in data) {

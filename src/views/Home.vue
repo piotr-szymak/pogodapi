@@ -1,12 +1,12 @@
 <template>
-  <div class="wrapper">
-    <div id="app">
+  <div class="wrapper" >
+    <div id="app" v-bind:class="poraRoku">
       <div id="nav">
         <v-app id="pogoda">
           <!-- <v-img :aspect-ratio="16/9" src="@/assets/lato.jpg"> -->
 
           <div>
-            <v-app-bar dark :color="'#'+colorProp">
+            <v-app-bar>
               <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
               <v-toolbar-title>Temperatura</v-toolbar-title>
@@ -29,15 +29,15 @@
             </v-app-bar>
           </div>
 
-          <div class="bg" v-bind:class="bgTemp">
+           <div class="bg" >
             <v-container fluid fill-height>
               <v-layout wrap justify-center>
                 <v-flex xs12>
-                  <progressbar v-bind:class="progressbar" />
+                  <progressbar />
                 </v-flex>
                 <div class="chartBackground"></div>
                 <v-flex fluid align-self-end sm10 class="chartTemp">
-                  <TwojaTemperatura v-bind:class="colorChart" />
+                  <TwojaTemperatura />
                 </v-flex>
               </v-layout>
             </v-container>
@@ -59,6 +59,28 @@
   --colorZima: #c1d4d9;
   --colorMroz: #a3bfd9;
   --colorUpal: #593325;
+}
+.v-app-bar.theme--light.v-sheet, .theme--light.v-btn.v-btn--icon {
+color:white;
+}
+
+.wiosna .v-app-bar.theme--light.v-sheet {
+  background-color: var(--colorWiosna);
+}
+.lato .v-app-bar.theme--light.v-sheet {
+  background-color: var(--colorLato);
+}
+.jesien .v-app-bar.theme--light.v-sheet {
+  background-color: var(--colorJesien);
+}
+.zima .v-app-bar.theme--light.v-sheet {
+  background-color: var(--colorZima);
+}
+.mroz .v-app-bar.theme--light.v-sheet {
+  background-color: var(--colorMroz);
+}
+.upal .v-app-bar.theme--light.v-sheet {
+  background-color: var(--colorUpal);
 }
 
 .chartBackground {
@@ -83,85 +105,86 @@
   z-index: 9999;
 }
 
-.pro-bar-wiosna .v-progress-circular {
+.wiosna .v-progress-circular {
   color: var(--colorWiosna);
 }
-.pro-bar-lato .v-progress-circular {
+.lato .v-progress-circular {
   color: var(--colorLato);
 }
-.pro-bar-jesien .v-progress-circular {
+.jesien .v-progress-circular {
   color: var(--colorJesien);
 }
-.pro-bar-zima .v-progress-circular {
+.zima .v-progress-circular {
   color: var(--colorZima);
 }
-.pro-bar-mroz .v-progress-circular {
+.mroz .v-progress-circular {
   color: var(--colorMroz);
 }
-.pro-bar-upal .v-progress-circular {
+.upal .v-progress-circular {
   color: var(--colorUpal);
 }
 
-.chartWiosna .temp-chart .grid line,
+
+.wiosna .temp-chart .grid line,
 .temp-chart .labels line {
   stroke: var(--colorWiosna);
 }
-.chartLato .temp-chart .grid line,
+.lato .temp-chart .grid line,
 .temp-chart .labels line {
   stroke: var(--colorLato);
 }
-.chartJesien .temp-chart .grid line,
+.jesien .temp-chart .grid line,
 .temp-chart .labels line {
   stroke: var(--colorJesien);
 }
-.chartZima .temp-chart .grid line,
+.zima .temp-chart .grid line,
 .temp-chart .labels line {
   stroke: var(--colorZima);
 }
-.chartMroz .temp-chart .grid line,
+.mroz .temp-chart .grid line,
 .temp-chart .labels line {
   stroke: var(--colorMroz);
 }
-.chartUpal .temp-chart .grid line,
+.upal .temp-chart .grid line,
 .temp-chart .labels line {
   stroke: var(--colorUpal);
 }
 
-.chartWiosna .curve-temp .stroke {
+.wiosna .curve-temp .stroke {
   stroke: var(--colorWiosna);
 }
-.chartLato .curve-temp .stroke {
+.lato .curve-temp .stroke {
   stroke: var(--colorLato);
 }
-.chartJesien .curve-temp .stroke {
+.jesien .curve-temp .stroke {
   stroke: var(--colorJesien);
 }
-.chartZima .curve-temp .stroke {
+.zima .curve-temp .stroke {
   stroke: var(--colorZima);
 }
-.chartMroz .curve-temp .stroke {
+.mroz .curve-temp .stroke {
   stroke: var(--colorMroz);
 }
-.chartUpal .curve-temp .stroke {
+.upal .curve-temp .stroke {
   stroke: var(--colorUpal);
 }
 
-.chartWiosna .colorGradPory {
+.wiosna .colorGradPory {
   stop-color: var(--colorWiosna);
 }
-.chartLato .colorGradPory {
+.lato .colorGradPory {
   stop-color: var(--colorLato);
 }
-.chartJesien .colorGradPory {
+.jesien .colorGradPory {
   stop-color: var(--colorJesien);
 }
-.chartZima .colorGradPory {
+.zima .colorGradPory {
   stop-color: var(--colorZima);
 }
-.chartMroz .colorGradPory {
+.mroz .colorGradPory {
   stop-color: var(--colorMroz);
 }
-.chartUpal .colorGradPory {
+.upal .colorGradPory {
   stop-color: var(--colorUpal);
 }
 </style>
@@ -182,22 +205,22 @@
   background-size: cover;
   position: relative;
 }
-.bglato {
+.lato .bg {
   background-image: url("../assets/lato.jpg");
 }
-.bgwiosna {
+.wiosna .bg {
   background-image: url("../assets/wiosna.jpg");
 }
-.bgjesien {
+.jesien .bg {
   background-image: url("../assets/jesien.jpg");
 }
-.bgzima {
+.zima .bg {
   background-image: url("../assets/zima2.jpg");
 }
-.bgupal {
+.upal .bg {
   background-image: url("../assets/goraco.jpg");
 }
-.bgmroz {
+.mroz .bg {
   background-image: url("../assets/zima.jpg");
 }
 a {
@@ -235,67 +258,36 @@ export default {
     shortTemp: function() {
       return this.temperatura.substring(0, 2) + "°C";
     },
-    bgTemp: function() {
+    poraRoku: function() {
       return {
-        bgwiosna:
+        wiosna:
           this.temperatura.substring(0, 2) > 15 &&
           this.temperatura.substring(0, 2) < 25,
-        bglato:
+        lato:
           this.temperatura.substring(0, 2) > 25 &&
-          this.temperatura.substring(0, 2) < 45,
-        bgjesien:
+          this.temperatura.substring(0, 2) < 40,
+        jesien:
           this.temperatura.substring(0, 2) > 0 &&
           this.temperatura.substring(0, 2) < 15,
-        bgzima:
+        zima:
           this.temperatura.substring(0, 2) > -20 &&
           this.temperatura.substring(0, 2) < 0,
-        bgupal: this.temperatura.substring(0, 2) > 45,
-        bgmroz: this.temperatura.substring(0, 2) < -20
+        upal: this.temperatura.substring(0, 2) > 40,
+        mroz: this.temperatura.substring(0, 2) < -20
       };
     },
-
-    progressbar: function() {
-      return {
-        "pro-bar-wiosna": this.bgTemp.bgwiosna,
-        "pro-bar-lato": this.bgTemp.bglato,
-        "pro-bar-jesien": this.bgTemp.bgjesien,
-        "pro-bar-zima": this.bgTemp.bgzima,
-        "pro-bar-upal": this.bgTemp.bgupal,
-        "pro-bar-mroz": this.bgTemp.bgmroz
-      };
-    },
-
-    colorChart: function() {
-      return {
-        chartWiosna: this.bgTemp.bgwiosna,
-        chartLato: this.bgTemp.bglato,
-        chartJesien: this.bgTemp.bgjesien,
-        chartZima: this.bgTemp.bgzima,
-        chartUpal: this.bgTemp.bgupal,
-        chartMroz: this.bgTemp.bgmroz
-      };
-    },
-    colorData: function() {
-      return {
-        d97ea8: this.bgTemp.bgwiosna,
-        "12a697": this.bgTemp.bglato,
-        "733702": this.bgTemp.bgjesien,
-        c1d4d9: this.bgTemp.bgzima,
-        "593325": this.bgTemp.bgupal,
-        a3bfd9: this.bgTemp.bgmroz
-      };
-    },
-    colorProp: function() {
-      return Object.keys(this.colorData).find(
-        key => this.colorData[key] === true
-      );
-    }
+   
+  //   colorProp: function() {
+  //     return Object.keys(this.colorData).find(
+  //       key => this.colorData[key] === true
+  //     );
+  //   }
   },
 
   methods: {
     allRecords: function() {
       axios
-        .get("/aktualna-temperatura")
+        .get("http://192.168.1.31/aktualna-temperatura")
         .then(response => {
           this.temperatura = response.data;
           console.log(this.temperatura);
