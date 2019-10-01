@@ -1,6 +1,6 @@
 <template>
-  <div class="wrapper" >
-    <div id="app" v-bind:class="poraRoku">
+  <div id="bgRok" v-bind:class="poraRoku" >
+    <div id="app" class="wrapper">
       <div id="nav">
         <v-app id="pogoda">
           <!-- <v-img :aspect-ratio="16/9" src="@/assets/lato.jpg"> -->
@@ -21,8 +21,14 @@
                 </template>
 
                 <v-list>
-                  <v-list-item v-for="n in 5" :key="n" @click="() => {}">
-                    <v-list-item-title>Option {{ n }}</v-list-item-title>
+                  <v-list-item>
+                    <v-list-item-title>Wilgotność</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-title>Temperatura</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-title>Historia</v-list-item-title>
                   </v-list-item>
                 </v-list>
               </v-menu>
@@ -52,6 +58,59 @@
 </template>
 
 <style>
+@media(min-width: 600px) {
+.wrapper {
+  margin: auto;
+  width: 500px;
+  height: 100%;
+   
+}
+
+.wiosna .wrapper {
+box-shadow: 1px 3px 15px 5px var(--colorWiosna);
+}
+.lato .wrapper {
+box-shadow: 1px 3px 15px 5px var(--colorLato);
+}
+.jesien .wrapper {
+box-shadow: 1px 3px 15px 5px var(--colorJesien);
+}
+.zima .wrapper {
+box-shadow: 1px 3px 15px 5px var(--colorZima);
+}
+.upal .wrapper {
+box-shadow: 1px 3px 15px 5px var(--colorUpal);
+}
+.mroz .wrapper {
+box-shadow: 1px 3px 15px 5px var(--colorMroz);
+}
+}
+
+#bgRok.wiosna {
+  background-image: url(../assets/wiosna.jpg);
+}
+#bgRok.lato {
+  background-image: url(../assets/lato.jpg);
+  background-size: cover;
+}
+#bgRok.jesien {
+  background-image: url(../assets/jesien.jpg);
+  background-size: cover;
+  background-position-y: -300px;
+}
+#bgRok.zima {
+  background-image: url(../assets/zima2.jpg);
+  background-position-y: -350px;
+  
+}
+#bgRok.upal {
+  background-image: url(../assets/goraco.jpg);
+  background-position-y: -2580px;
+}
+#bgRok.mroz {
+  background-image: url(../assets/zima.jpg);
+    background-position-y: -350px;
+}
 :root {
   --colorWiosna: #d97ea8;
   --colorLato: #12a697;
@@ -207,6 +266,7 @@ color:white;
 }
 .lato .bg {
   background-image: url("../assets/lato.jpg");
+  
 }
 .wiosna .bg {
   background-image: url("../assets/wiosna.jpg");
@@ -262,18 +322,18 @@ export default {
       return {
         wiosna:
           this.temperatura.substring(0, 2) > 15 &&
-          this.temperatura.substring(0, 2) < 25,
+          this.temperatura.substring(0, 2) <= 25,
         lato:
           this.temperatura.substring(0, 2) > 25 &&
-          this.temperatura.substring(0, 2) < 40,
+          this.temperatura.substring(0, 2) <= 40,
         jesien:
           this.temperatura.substring(0, 2) > 0 &&
           this.temperatura.substring(0, 2) < 15,
         zima:
           this.temperatura.substring(0, 2) > -20 &&
-          this.temperatura.substring(0, 2) < 0,
+          this.temperatura.substring(0, 2) <= 0,
         upal: this.temperatura.substring(0, 2) > 40,
-        mroz: this.temperatura.substring(0, 2) < -20
+        mroz: this.temperatura.substring(0, 2) <= -20
       };
     },
    

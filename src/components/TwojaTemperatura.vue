@@ -3,10 +3,10 @@
  <template>
   <div id="room_temp">
     <div class="temp-chart">
-      <svg  style="width:0; height:0; position:absolute;" aria-hidden="true" focusable="false">
+      <svg style="width:0; height:0; position:absolute;" aria-hidden="true" focusable="false">
         <defs>
           <linearGradient id="tempFill" x1="1" x2="1" y1="0" y2="1">
-            <stop offset="0%" class="colorGradPory"/>
+            <stop offset="0%" class="colorGradPory" />
             <stop offset="100%" class="colorGrad" />
           </linearGradient>
         </defs>
@@ -24,7 +24,6 @@
 
 
 <style lang="scss">
-
 :root {
   --colorGrad: #ffffff;
   --colorGradWiosna: #ffffff;
@@ -34,7 +33,7 @@
   stop-color: var(--colorGrad);
 }
 .colorGradPory {
-  stop-color: var(--colorGradWiosna)
+  stop-color: var(--colorGradWiosna);
 }
 
 .temp-chart {
@@ -51,9 +50,6 @@
       stroke: rgba(#12a697, 0.8);
     }
   }
-
-    
-
 
   .x-labels {
     .label {
@@ -121,7 +117,7 @@ export default {
         this.dataset.push(data[key]);
         //this.labels.xLabels.push(moment(data[key]).format("HH"));
         var lab = key;
-        
+
         if (lab != prevlab) {
           this.labels.xLabels.push(key.substring(0, 2));
         } else {
