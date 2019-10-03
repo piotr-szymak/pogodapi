@@ -17,6 +17,18 @@
 .v-progress-circular {
   top: 40px;
   color: #12a697;
+  z-index: 999;
+}
+
+.v-progress-circular:before {
+  content: "";
+  display:block;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.349);
+  border-radius: 100%;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 .value-text {

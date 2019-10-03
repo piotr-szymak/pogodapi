@@ -1,5 +1,5 @@
 <template>
-  <div id="bgRok" v-bind:class="poraRoku" >
+  <div id="bgRok" v-bind:class="poraRoku">
     <div id="app" class="wrapper">
       <div id="nav">
         <v-app id="pogoda">
@@ -35,11 +35,14 @@
             </v-app-bar>
           </div>
 
-           <div class="bg" >
+          <div class="bg">
             <v-container fluid fill-height>
               <v-layout wrap justify-center>
-                <v-flex xs12>
+                <v-flex xs6>
                   <progressbar />
+                </v-flex>
+                <v-flex xs6>
+                  <humiditybar />
                 </v-flex>
                 <div class="chartBackground"></div>
                 <v-flex fluid align-self-end sm10 class="chartTemp">
@@ -58,32 +61,35 @@
 </template>
 
 <style>
-@media(min-width: 600px) {
-.wrapper {
-  margin: auto;
-  width: 500px;
-  height: 100%;
-   
+.v-menu { 
+  z-index: 9999;
 }
 
-.wiosna .wrapper {
-box-shadow: 1px 3px 15px 5px var(--colorWiosna);
-}
-.lato .wrapper {
-box-shadow: 1px 3px 15px 5px var(--colorLato);
-}
-.jesien .wrapper {
-box-shadow: 1px 3px 15px 5px var(--colorJesien);
-}
-.zima .wrapper {
-box-shadow: 1px 3px 15px 5px var(--colorZima);
-}
-.upal .wrapper {
-box-shadow: 1px 3px 15px 5px var(--colorUpal);
-}
-.mroz .wrapper {
-box-shadow: 1px 3px 15px 5px var(--colorMroz);
-}
+@media (min-width: 600px) {
+  .wrapper {
+    margin: auto;
+    width: 500px;
+    height: 100%;
+  }
+
+  .wiosna .wrapper {
+    box-shadow: 1px 3px 15px 5px var(--colorWiosna);
+  }
+  .lato .wrapper {
+    box-shadow: 1px 3px 15px 5px var(--colorLato);
+  }
+  .jesien .wrapper {
+    box-shadow: 1px 3px 15px 5px var(--colorJesien);
+  }
+  .zima .wrapper {
+    box-shadow: 1px 3px 15px 5px var(--colorZima);
+  }
+  .upal .wrapper {
+    box-shadow: 1px 3px 15px 5px var(--colorUpal);
+  }
+  .mroz .wrapper {
+    box-shadow: 1px 3px 15px 5px var(--colorMroz);
+  }
 }
 
 #bgRok.wiosna {
@@ -101,7 +107,6 @@ box-shadow: 1px 3px 15px 5px var(--colorMroz);
 #bgRok.zima {
   background-image: url(../assets/zima2.jpg);
   background-position-y: -350px;
-  
 }
 #bgRok.upal {
   background-image: url(../assets/goraco.jpg);
@@ -109,7 +114,7 @@ box-shadow: 1px 3px 15px 5px var(--colorMroz);
 }
 #bgRok.mroz {
   background-image: url(../assets/zima.jpg);
-    background-position-y: -350px;
+  background-position-y: -350px;
 }
 :root {
   --colorWiosna: #d97ea8;
@@ -119,8 +124,9 @@ box-shadow: 1px 3px 15px 5px var(--colorMroz);
   --colorMroz: #a3bfd9;
   --colorUpal: #593325;
 }
-.v-app-bar.theme--light.v-sheet, .theme--light.v-btn.v-btn--icon {
-color:white;
+.v-app-bar.theme--light.v-sheet,
+.theme--light.v-btn.v-btn--icon {
+  color: white;
 }
 
 .wiosna .v-app-bar.theme--light.v-sheet {
@@ -182,7 +188,6 @@ color:white;
 .upal .v-progress-circular {
   color: var(--colorUpal);
 }
-
 
 .wiosna .temp-chart .grid line,
 .temp-chart .labels line {
@@ -246,9 +251,6 @@ color:white;
 .upal .colorGradPory {
   stop-color: var(--colorUpal);
 }
-</style>
-
-<style scoped>
 .wrapper {
   background: #12a697;
 }
@@ -266,7 +268,6 @@ color:white;
 }
 .lato .bg {
   background-image: url("../assets/lato.jpg");
-  
 }
 .wiosna .bg {
   background-image: url("../assets/wiosna.jpg");
@@ -292,16 +293,19 @@ a {
 }
 </style>
 
+
 <script>
 // @ is an alias to /src
 import TwojaTemperatura from "@/components/TwojaTemperatura.vue";
 import progressbar from "@/components/progressbar.vue";
+import humiditybar from "@/components/humiditybar.vue";
 
 export default {
   name: "home",
   components: {
     TwojaTemperatura,
-    progressbar
+    progressbar,
+    humiditybar
   },
 
   data: () => ({
@@ -335,13 +339,13 @@ export default {
         upal: this.temperatura.substring(0, 2) > 40,
         mroz: this.temperatura.substring(0, 2) <= -20
       };
-    },
-   
-  //   colorProp: function() {
-  //     return Object.keys(this.colorData).find(
-  //       key => this.colorData[key] === true
-  //     );
-  //   }
+    }
+
+    //   colorProp: function() {
+    //     return Object.keys(this.colorData).find(
+    //       key => this.colorData[key] === true
+    //     );
+    //   }
   },
 
   methods: {
@@ -350,12 +354,6 @@ export default {
         .get("http://192.168.1.31/aktualna-temperatura")
         .then(response => {
           this.temperatura = response.data;
-          console.log(this.temperatura);
-          console.log(this.bgTemp);
-          console.log(this.progressbar);
-          console.log(this.colorData);
-
-          console.log(this.colorProp);
         })
         .catch(function(error) {
           console.log(error);

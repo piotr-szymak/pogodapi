@@ -119,9 +119,10 @@ export default {
         var lab = key;
 
         if (lab != prevlab) {
-          this.labels.xLabels.push(key.substring(0, 2));
+          this.labels.xLabels.push(key.substring(0, 5));
         } else {
           this.labels.xLabels.push("");
+          
         }
         prevlab = lab;
       }
