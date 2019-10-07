@@ -65,18 +65,41 @@ import TwojaTemperatura from "@/components/TwojaTemperatura.vue";
 import progressbar from "@/components/progressbar.vue";
 import humiditybar from "@/components/humiditybar.vue";
 
+import {store} from '@/store'
+import { mapState, mapActions, mapGetters } from 'vuex';
+
+
 
 export default {
    name: "humidity",
+   store,
   components: {
     TwojaTemperatura,
     progressbar,
-    humiditybar
+    humiditybar,
+    
   },
   created() {
-    console.log(this.$store);
-    this.$store.dispatch('temps/getRecords')
-  }
-};
+    this.$store.dispatch('oneTemp/getRecords')
+    // .then(response => {
+    //     this.$store.dispatch('oneTemp/poraRoku');
+    //     console.log(this.poraRoku);
+    //   })
+      console.log(this.poraRoku);
+  },
+  computed: {
+      ...mapState({
+        temperatura: state => state["oneTemp"].temperatura,
+      }),
+      ...mapGetters({
+        poraRoku: 'oneTemp/poraRoku'
+      })
+  },
+  // methods: {
+  //   ...mapActions({
+  //     poraRoku: 'oneTemp/getPoraRoku',
+  //   }),
+  // }
+}
 
 </script>
