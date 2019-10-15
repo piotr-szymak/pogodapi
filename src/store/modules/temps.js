@@ -1,92 +1,49 @@
-// /*jshint esversion: 6 */
-// //  data: () => ({
-// //     temperatura: ""
-// //   }),
-// //   created() {
-// //     this.allRecords();
-// //   },
-// //   // bgImage() {
-// //   //   this.background();
-// //   // },
-// //   computed: {
-// //     // a computed getter
-// //     shortTemp: function() {
-// //       return this.temperatura.substring(0, 2) + "°C";
-// //     },
-// //     poraRoku: function() {
-// //       return {
-// //         wiosna:
-// //           this.temperatura.substring(0, 2) > 15 &&
-// //           this.temperatura.substring(0, 2) <= 25,
-// //         lato:
-// //           this.temperatura.substring(0, 2) > 25 &&
-// //           this.temperatura.substring(0, 2) <= 40,
-// //         jesien:
-// //           this.temperatura.substring(0, 2) > 0 &&
-// //           this.temperatura.substring(0, 2) < 15,
-// //         zima:
-// //           this.temperatura.substring(0, 2) > -20 &&
-// //           this.temperatura.substring(0, 2) <= 0,
-// //         upal: this.temperatura.substring(0, 2) > 40,
-// //         mroz: this.temperatura.substring(0, 2) <= -20
-// //       };
-// //     }
+/*jshint esversion: 6 */
+  // initial state
+const axios = require('axios');
 
-// //     //   colorProp: function() {
-// //     //     return Object.keys(this.colorData).find(
-// //     //       key => this.colorData[key] === true
-// //     //     );
-// //     //   }
-// //   },
-
-// //   methods: {
-// //     allRecords: function() {
-// //       axios
-// //         .get("http://192.168.1.31/aktualna-temperatura")
-// //         .then(response => {
-// //           this.temperatura = response.data;
-// //         })
-// //         .catch(function(error) {
-// //           console.log(error);
-// //         });
-// //     }
-// //   }
-// const axios = require('axios');
-//   // initial state
-// const state = {
-//   data: () => ({
-//     temperatura: "",
-    
-//   }),
-// }
-
-// // mutations
-// const mutations = {
-//   setRecords (state, response) {
-//     state.temperatura = response;
-//   }
-// }
-
-// // actions
-// const actions = {
-//     // allRecords: function() {
-//         getRecords({commit} ){
-//         console.log('dupa');
-//         axios.get("http://192.168.1.31/aktualna-temperatura")
-//         .then(response => {
-//           commit('setRecords', response.data);
-//         })
-//         .catch(function(error) {
-//           console.log(error);
-//         });
-//     }
-// }
+const state = () => ({
+    temperatura: ""
+});
 
 
+// mutations
+const mutations = {
+    setTemps (state, response) {
+    state.temperatura = response;
+  },
 
-// export default {
-//   namespaced: true,
-//   state,
-//   actions,
-//   mutations
-// }
+};
+// actions
+const actions = {
+    getTemps({commit}){
+        return axios.get("http://192.168.1.31/temperatura-10")
+        .then(res => {
+         const data = res.data.temp;
+            var prevlab = 0;
+         for (let key in data) {
+        //console.log(data);
+        this.dataset.push(data[key]);
+        //this.labels.xLabels.push(moment(data[key]).format("HH"));
+        var lab = key;
+        if (lab != prevlab) {
+          this.labels.xLabels.push(key.substring(0, 5));
+        } else {
+          this.labels.xLabels.push("");
+        }
+        prevlab = lab;
+         }
+        }).then(commit('setTemps', this.res))
+        .catch(function(error) {
+          // eslint-disable-next-line no-console
+          console.error(error);
+        });
+    },
+};
+
+export default {
+  namespaced: true,
+  state,
+  actions,
+  mutations
+};

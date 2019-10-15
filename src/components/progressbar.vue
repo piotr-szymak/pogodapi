@@ -38,32 +38,47 @@
 
 
 <script>
-import axios from "axios";
 
+import {store} from '@/store'
+import { mapState} from 'vuex';
 export default {
-  data: () => ({
-    temperatura: ""
-  }),
-  created() {
-    this.allRecords();
-  },
-  computed: {
-    // a computed getter
-    shortTemp: function() {
+  store,
+  // data: () => ({
+  //   temperatura: ""
+  // }),
+  // created() {
+  //   this.allRecords();
+  // },
+  // computed: {
+  //   // a computed getter
+  //   shortTemp: function() {
+  //     return this.temperatura.substring(0, 2) + "°C";
+  //   }
+  // },
+  // methods: {
+  //   allRecords: function() {
+  //     axios
+  //       .get("http://192.168.1.31/aktualna-temperatura")
+  //       .then(response => {
+  //         this.temperatura = response.data;
+  //       })
+  //       .catch(function(error) {
+  //         console.log(error);
+  //       });
+  //   }
+  // }
+  // created() {
+  //   this.$store.dispatch('oneTemp/getRecords')
+   
+    
+  // },
+    computed: {
+      ...mapState({
+        temperatura: state => state["oneTemp"].temperatura,
+      }),
+      shortTemp: function() {
       return this.temperatura.substring(0, 2) + "°C";
-    }
+      }
   },
-  methods: {
-    allRecords: function() {
-      axios
-        .get("http://192.168.1.31/aktualna-temperatura")
-        .then(response => {
-          this.temperatura = response.data;
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    }
-  }
 };
 </script>

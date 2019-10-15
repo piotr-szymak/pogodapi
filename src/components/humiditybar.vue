@@ -7,7 +7,7 @@
         :size="200"
         :rotate="-90"
         :width="20"
-      >{{ shortHumi }}</v-progress-circular>
+      >{{shortHumi}}</v-progress-circular>
     </div>
   </div>
 </template>
@@ -37,32 +37,48 @@
 
 
 <script>
-import axios from "axios";
+import {store} from '@/store'
+import {mapState} from 'vuex';
 
 export default {
-  data: () => ({
-    humidity: ""
-  }),
-  created() {
-    this.allRecords();
+  store,
+  // data: () => ({
+  //   humidity: ""
+  // }),
+  // created() {
+  //   this.allRecords();
+  // },
+  // computed: {
+  //   // a computed getter
+  //   shortHumi: function() {
+  //     return this.humidity.substring(0, 2) + "%";
+  //   }
+  // },
+  // methods: {
+  //   allRecords: function() {
+  //     axios
+  //       .get("http://192.168.1.31/aktualna-wilgotnosc")
+  //       .then(response => {
+  //         this.humidity = response.data;
+  //       })
+  //       .catch(function(error) {
+  //         console.log(error);
+  //       });
+  //   }
+  // }
+   created() {
+    this.$store.dispatch('humidityRec/getHumidity')
   },
-  computed: {
-    // a computed getter
-    shortHumi: function() {
+ computed: {
+      ...mapState({
+        humidity: state => state["humidityRec"].humidity,
+      }),
+      
+      shortHumi: function() {
+        console.log(this.humidity);
       return this.humidity.substring(0, 2) + "%";
-    }
+      }
   },
-  methods: {
-    allRecords: function() {
-      axios
-        .get("http://192.168.1.31/aktualna-wilgotnosc")
-        .then(response => {
-          this.humidity = response.data;
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    }
-  }
+
 };
 </script>

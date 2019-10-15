@@ -30,16 +30,16 @@ const mutations = {
     setRecords (state, response) {
     state.temperatura = response;
   },
-
 };
 // actions
 const actions = {
     getRecords({commit} ){
-        return axios.get("http://192.168.1.31/aktualna-temperatura")
+        return axios.get("/aktualna-temperatura")
         .then(response => {
           commit('setRecords', response.data);
         })
         .catch(function(error) {
+          // eslint-disable-next-line no-console
           console.error(error);
         });
     },

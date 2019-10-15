@@ -64,9 +64,8 @@
 import TwojaTemperatura from "@/components/TwojaTemperatura.vue";
 import progressbar from "@/components/progressbar.vue";
 import humiditybar from "@/components/humiditybar.vue";
-
-import {store} from '@/store'
-import { mapState, mapActions, mapGetters } from 'vuex';
+import {store} from '@/store';
+import {mapState, mapGetters} from 'vuex';
 
 
 
@@ -81,11 +80,7 @@ export default {
   },
   created() {
     this.$store.dispatch('oneTemp/getRecords')
-    // .then(response => {
-    //     this.$store.dispatch('oneTemp/poraRoku');
-    //     console.log(this.poraRoku);
-    //   })
-      console.log(this.poraRoku);
+    console.log(this.poraRoku);
   },
   computed: {
       ...mapState({

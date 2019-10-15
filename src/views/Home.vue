@@ -61,236 +61,7 @@
 </template>
 
 <style>
-.v-menu { 
-  z-index: 9999;
-}
 
-@media (min-width: 600px) {
-  .wrapper {
-    margin: auto;
-    width: 500px;
-    height: 100%;
-  }
-
-  .wiosna .wrapper {
-    box-shadow: 1px 3px 15px 5px var(--colorWiosna);
-  }
-  .lato .wrapper {
-    box-shadow: 1px 3px 15px 5px var(--colorLato);
-  }
-  .jesien .wrapper {
-    box-shadow: 1px 3px 15px 5px var(--colorJesien);
-  }
-  .zima .wrapper {
-    box-shadow: 1px 3px 15px 5px var(--colorZima);
-  }
-  .upal .wrapper {
-    box-shadow: 1px 3px 15px 5px var(--colorUpal);
-  }
-  .mroz .wrapper {
-    box-shadow: 1px 3px 15px 5px var(--colorMroz);
-  }
-}
-
-#bgRok.wiosna {
-  background-image: url(../assets/wiosna.jpg);
-}
-#bgRok.lato {
-  background-image: url(../assets/lato.jpg);
-  background-size: cover;
-}
-#bgRok.jesien {
-  background-image: url(../assets/jesien.jpg);
-  background-size: cover;
-  background-position-y: -300px;
-}
-#bgRok.zima {
-  background-image: url(../assets/zima2.jpg);
-  background-position-y: -350px;
-}
-#bgRok.upal {
-  background-image: url(../assets/goraco.jpg);
-  background-position-y: -2580px;
-}
-#bgRok.mroz {
-  background-image: url(../assets/zima.jpg);
-  background-position-y: -350px;
-}
-:root {
-  --colorWiosna: #d97ea8;
-  --colorLato: #12a697;
-  --colorJesien: #733702;
-  --colorZima: #c1d4d9;
-  --colorMroz: #a3bfd9;
-  --colorUpal: #593325;
-}
-.v-app-bar.theme--light.v-sheet,
-.theme--light.v-btn.v-btn--icon {
-  color: white;
-}
-
-.wiosna .v-app-bar.theme--light.v-sheet {
-  background-color: var(--colorWiosna);
-}
-.lato .v-app-bar.theme--light.v-sheet {
-  background-color: var(--colorLato);
-}
-.jesien .v-app-bar.theme--light.v-sheet {
-  background-color: var(--colorJesien);
-}
-.zima .v-app-bar.theme--light.v-sheet {
-  background-color: var(--colorZima);
-}
-.mroz .v-app-bar.theme--light.v-sheet {
-  background-color: var(--colorMroz);
-}
-.upal .v-app-bar.theme--light.v-sheet {
-  background-color: var(--colorUpal);
-}
-
-.chartBackground {
-  background: rgba(255, 255, 255, 0.397);
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  display: block;
-  /* background-image: url('http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_527bf56961712_1.JPG'); */
-  width: 120%;
-  height: 45%;
-  -webkit-filter: blur(10px);
-  -moz-filter: blur(10px);
-  -o-filter: blur(10px);
-  -ms-filter: blur(10px);
-  filter: blur(20px);
-  overflow: hidden;
-}
-.chartTemp {
-  z-index: 9999;
-}
-
-.wiosna .v-progress-circular {
-  color: var(--colorWiosna);
-}
-.lato .v-progress-circular {
-  color: var(--colorLato);
-}
-.jesien .v-progress-circular {
-  color: var(--colorJesien);
-}
-.zima .v-progress-circular {
-  color: var(--colorZima);
-}
-.mroz .v-progress-circular {
-  color: var(--colorMroz);
-}
-.upal .v-progress-circular {
-  color: var(--colorUpal);
-}
-
-.wiosna .temp-chart .grid line,
-.temp-chart .labels line {
-  stroke: var(--colorWiosna);
-}
-.lato .temp-chart .grid line,
-.temp-chart .labels line {
-  stroke: var(--colorLato);
-}
-.jesien .temp-chart .grid line,
-.temp-chart .labels line {
-  stroke: var(--colorJesien);
-}
-.zima .temp-chart .grid line,
-.temp-chart .labels line {
-  stroke: var(--colorZima);
-}
-.mroz .temp-chart .grid line,
-.temp-chart .labels line {
-  stroke: var(--colorMroz);
-}
-.upal .temp-chart .grid line,
-.temp-chart .labels line {
-  stroke: var(--colorUpal);
-}
-
-.wiosna .curve-temp .stroke {
-  stroke: var(--colorWiosna);
-}
-.lato .curve-temp .stroke {
-  stroke: var(--colorLato);
-}
-.jesien .curve-temp .stroke {
-  stroke: var(--colorJesien);
-}
-.zima .curve-temp .stroke {
-  stroke: var(--colorZima);
-}
-.mroz .curve-temp .stroke {
-  stroke: var(--colorMroz);
-}
-.upal .curve-temp .stroke {
-  stroke: var(--colorUpal);
-}
-
-.wiosna .colorGradPory {
-  stop-color: var(--colorWiosna);
-}
-.lato .colorGradPory {
-  stop-color: var(--colorLato);
-}
-.jesien .colorGradPory {
-  stop-color: var(--colorJesien);
-}
-.zima .colorGradPory {
-  stop-color: var(--colorZima);
-}
-.mroz .colorGradPory {
-  stop-color: var(--colorMroz);
-}
-.upal .colorGradPory {
-  stop-color: var(--colorUpal);
-}
-.wrapper {
-  background: #12a697;
-}
-#pogoda {
-  height: 100vh;
-}
-.bg {
-  height: 100vh;
-  width: 100%;
-  background-position: center;
-  background-position-y: 40%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
-.lato .bg {
-  background-image: url("../assets/lato.jpg");
-}
-.wiosna .bg {
-  background-image: url("../assets/wiosna.jpg");
-}
-.jesien .bg {
-  background-image: url("../assets/jesien.jpg");
-}
-.zima .bg {
-  background-image: url("../assets/zima2.jpg");
-}
-.upal .bg {
-  background-image: url("../assets/goraco.jpg");
-}
-.mroz .bg {
-  background-image: url("../assets/zima.jpg");
-}
-a {
-  text-decoration: none;
-}
-
-.navbar {
-  z-index: 999;
-}
 </style>
 
 
@@ -300,65 +71,84 @@ import TwojaTemperatura from "@/components/TwojaTemperatura.vue";
 import progressbar from "@/components/progressbar.vue";
 import humiditybar from "@/components/humiditybar.vue";
 
+
+import {store} from '@/store'
+import { mapState, mapGetters } from 'vuex';
+
 export default {
   name: "home",
+  store,
   components: {
     TwojaTemperatura,
     progressbar,
     humiditybar
   },
 
-  data: () => ({
-    temperatura: ""
-  }),
-  created() {
-    this.allRecords();
-  },
-  // bgImage() {
-  //   this.background();
+  // data: () => ({
+  //   temperatura: ""
+  // }),
+  // created() {
+  //   this.allRecords();
   // },
-  computed: {
-    // a computed getter
-    shortTemp: function() {
-      return this.temperatura.substring(0, 2) + "°C";
-    },
-    poraRoku: function() {
-      return {
-        wiosna:
-          this.temperatura.substring(0, 2) > 15 &&
-          this.temperatura.substring(0, 2) <= 25,
-        lato:
-          this.temperatura.substring(0, 2) > 25 &&
-          this.temperatura.substring(0, 2) <= 40,
-        jesien:
-          this.temperatura.substring(0, 2) > 0 &&
-          this.temperatura.substring(0, 2) < 15,
-        zima:
-          this.temperatura.substring(0, 2) > -20 &&
-          this.temperatura.substring(0, 2) <= 0,
-        upal: this.temperatura.substring(0, 2) > 40,
-        mroz: this.temperatura.substring(0, 2) <= -20
-      };
-    }
+  // // bgImage() {
+  // //   this.background();
+  // // },
+  // computed: {
+  //   // a computed getter
+  //   shortTemp: function() {
+  //     return this.temperatura.substring(0, 2) + "°C";
+  //   },
+  //   poraRoku: function() {
+  //     return {
+  //       wiosna:
+  //         this.temperatura.substring(0, 2) > 15 &&
+  //         this.temperatura.substring(0, 2) <= 25,
+  //       lato:
+  //         this.temperatura.substring(0, 2) > 25 &&
+  //         this.temperatura.substring(0, 2) <= 40,
+  //       jesien:
+  //         this.temperatura.substring(0, 2) > 0 &&
+  //         this.temperatura.substring(0, 2) < 15,
+  //       zima:
+  //         this.temperatura.substring(0, 2) > -20 &&
+  //         this.temperatura.substring(0, 2) <= 0,
+  //       upal: this.temperatura.substring(0, 2) > 40,
+  //       mroz: this.temperatura.substring(0, 2) <= -20
+  //     };
+  //   }
 
-    //   colorProp: function() {
-    //     return Object.keys(this.colorData).find(
-    //       key => this.colorData[key] === true
-    //     );
-    //   }
+  //   //   colorProp: function() {
+  //   //     return Object.keys(this.colorData).find(
+  //   //       key => this.colorData[key] === true
+  //   //     );
+  //   //   }
+  // },
+
+  // methods: {
+  //   allRecords: function() {
+  //     axios
+  //       .get("http://192.168.1.31/aktualna-temperatura")
+  //       .then(response => {
+  //         this.temperatura = response.data;
+  //       })
+  //       .catch(function(error) {
+  //         console.log(error);
+  //       });
+  //   }
+  // }
+
+   created() {
+    this.$store.dispatch('oneTemp/getRecords')
+   
+      console.log(this.poraRoku);
   },
-
-  methods: {
-    allRecords: function() {
-      axios
-        .get("http://192.168.1.31/aktualna-temperatura")
-        .then(response => {
-          this.temperatura = response.data;
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    }
-  }
+    computed: {
+      ...mapState({
+        temperatura: state => state["oneTemp"].temperatura,
+      }),
+      ...mapGetters({
+        poraRoku: 'oneTemp/poraRoku'
+      })
+  },
 };
 </script>
